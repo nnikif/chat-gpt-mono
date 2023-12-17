@@ -14,7 +14,7 @@ import {AuthController} from "./auth.controller"; // Assuming you have a UserMod
         PassportModule,
         JwtModule.register({
             secret: process.env.JWT_SECRET, // Make sure to have this secret in your .env file
-            signOptions: { expiresIn: '120m' }, // Token expiration time
+            signOptions: { expiresIn: '180m' }, // Token expiration time
         }),
     ],
     providers: [AuthService, LocalStrategy, JwtStrategy],
