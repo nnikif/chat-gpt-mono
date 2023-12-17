@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import {Controller, Get, Post, Req, Res, UseGuards} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { Request, Response } from 'express';
@@ -19,5 +19,11 @@ export class AuthController {
             // You might want to set other cookie options, such as 'secure: true' for HTTPS
         });
         return res.send({ message: 'Logged in successfully' });
+    }
+
+    @Get('logout')
+    async logout(@Res() res: Response) {
+        res.clearCookie('Authentication')
+        return res.send({ message: 'Logged out successfully' });
     }
 }

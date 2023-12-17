@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ChatService } from '../chat.service';
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ChatDetailComponent implements OnInit {
   chat: any; // Adjust the type as needed
   chatId!: string;
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService) {}
+  constructor(private route: ActivatedRoute, private chatService: ChatService, private authService: AuthService) {}
 
   ngOnInit() {
     this.chatId = this.route.snapshot.paramMap.get('id') as string;

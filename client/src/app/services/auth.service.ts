@@ -16,4 +16,8 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}auth/login`, { username, password }, { withCredentials: true });
   }
+
+  logout(): Observable<any> {
+    return this.http.get(`${this.apiUrl}auth/logout`, { withCredentials: true });
+  }
 }
