@@ -1,0 +1,8 @@
+<!-- chat-list.component.html -->
+<app-create-chat></app-create-chat>
+<div class="chat-list-container">
+  <h2>Your Chats</h2>
+  <ul class="chat-list">
+    <li *ngFor="let chatRecord of chatRecords"><a [routerLink]="['/chat', chatRecord.id]">{{ chatRecord.title }}</a></li>
+  </ul>
+</div>

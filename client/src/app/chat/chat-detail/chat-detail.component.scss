@@ -1,0 +1,112 @@
+// chat-detail.component.scss
+
+.chat-detail-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .user-message, .assistant-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    word-break: break-word; // Ensure long text doesn't overflow
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .user-message {
+    background-color: #e3f2fd; // Light blue background for user message
+    text-align: left;
+    border-top-right-radius: 0; // Speech bubble look
+
+    &:before {
+      content: '';
+      position: relative;
+      top: 0;
+      left: -10px;
+      border-width: 10px 10px 10px 0;
+      border-style: solid;
+      border-color: transparent #e3f2fd transparent transparent;
+    }
+  }
+
+  .assistant-message {
+    background-color: #fff; // White background for assistant message
+    text-align: right;
+    border-top-left-radius: 0; // Speech bubble look
+
+    &:before {
+      content: '';
+      position: relative;
+      top: 0;
+      right: -10px;
+      border-width: 10px 0 10px 10px;
+      border-style: solid;
+      border-color: transparent transparent transparent #fff;
+    }
+  }
+}
+
+// chat-detail.component.scss
+
+// ... existing styles
+
+// Styles for the message form
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    resize: vertical; // Allows vertical resizing
+    min-height: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<!-- chat-detail.component.html -->
+<div class="chat-navigation">
+  <a routerLink="/">← Back to Chat List</a>
+</div>
+<div class="chat-detail-container">
+  <h2>{{ chat?.title }}</h2>
+  <div *ngFor="let message of chat?.messages">
+    <div [ngClass]="{'user-message': message.role === 'user', 'assistant-message': message.role === 'assistant'}">
+      <div *ngIf="message.role === 'assistant'" [innerHTML]="message.content | markdown"></div>
+      <div *ngIf="message.role === 'user'">{{ message.content }}</div>
+    </div>
+  </div>
+  <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
+    <textarea formControlName="message" placeholder="Type your message here"></textarea>
+    <button type="submit" [disabled]="!chatForm.valid">Send</button>
+  </form>
+</div>

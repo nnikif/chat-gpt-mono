@@ -1,0 +1,6 @@
+<div class="create-chat-form">
+  <form [formGroup]="chatForm" (ngSubmit)="onSubmit()">
+    <input formControlName="title" placeholder="Enter new chat title">
+    <button type="submit" [disabled]="!chatForm.valid">Create Chat</button>
+  </form>
+</div>
