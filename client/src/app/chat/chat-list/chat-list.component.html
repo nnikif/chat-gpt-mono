@@ -3,6 +3,6 @@
 <div class="chat-list-container">
   <h2>Your Chats</h2>
   <ul class="chat-list">
-    <li *ngFor="let chatRecord of chatRecords"><a [routerLink]="['/chat', chatRecord.id]">{{ chatRecord.title }}</a></li>
+    <li *ngFor="let chatRecord of chatRecords"><a [routerLink]="['/chats', chatRecord.id]">{{ chatRecord.title }}</a></li>
   </ul>
 </div>

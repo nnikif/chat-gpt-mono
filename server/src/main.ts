@@ -13,6 +13,7 @@ async function bootstrap() {
   );
 
   app.use(cookieParser());
+  app.setGlobalPrefix('api');
 
 
 
@@ -28,13 +29,17 @@ async function bootstrap() {
   // app.useStaticAssets(join(__dirname, '..', '..','client/dist/gpt-angular'));
 
   // console.log(join(__dirname, '..', '..','client/dist/client'))
-  console.log(join(__dirname, '../../client/dist/gpt-angular/index.html'));
+  // await app.init();
+
+
+  // console.log(join(__dirname, '../../client/dist/gpt-angular/index.html'));
   const server = app.getHttpAdapter().getInstance();
   app.use(express.static(join(__dirname, '..', '../client/dist/gpt-angular')));
-  await app.listen(process.env.PORT || 3000);
-  server.get('*', (req, res) => {
+  server.get(/^(?!\/api).*/, (req, res) => {
     res.sendFile(join(__dirname, '../../client/dist/gpt-angular/index.html'));
   });
+  await app.listen(process.env.PORT || 3000);
+
 
 }
 bootstrap();
