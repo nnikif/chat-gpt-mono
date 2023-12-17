@@ -5,15 +5,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import * as express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
-      AppModule,
-      new ExpressAdapter(),
+      AppModule
   );
 
   app.use(cookieParser());
-  app.useStaticAssets(join(__dirname, '..', 'client/dist/client'));
+
 
 
   app.enableCors({
@@ -22,10 +22,19 @@ async function bootstrap() {
     credentials: true,
     allowedHeaders: 'Content-Type, Accept',
   });
-  await app.listen(process.env.PORT || 3000);
+
+  // await app.init();
+
+  // app.useStaticAssets(join(__dirname, '..', '..','client/dist/gpt-angular'));
+
+  // console.log(join(__dirname, '..', '..','client/dist/client'))
+  console.log(join(__dirname, '../../client/dist/gpt-angular/index.html'));
   const server = app.getHttpAdapter().getInstance();
+  app.use(express.static(join(__dirname, '..', '../client/dist/gpt-angular')));
+  await app.listen(process.env.PORT || 3000);
   server.get('*', (req, res) => {
-    res.sendFile(join(__dirname, '../client/dist/client/index.html'));
+    res.sendFile(join(__dirname, '../../client/dist/gpt-angular/index.html'));
   });
+
 }
 bootstrap();
