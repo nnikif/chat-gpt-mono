@@ -5,13 +5,14 @@
     "ng": "ng",
     "start": "node server.js",
     "build:dev": "ng build",
-    "build": "ng build --configuration production",
+    "build": "node_modules/.bin/ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
+    "@angular/cli": "~14.0.1",
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
@@ -27,7 +28,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.1",
-    "@angular/cli": "~14.0.1",
+
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.1.0",
