@@ -21,7 +21,8 @@ export class CreateChatComponent {
       this.chatService.createChat(this.chatForm.value.title as string).subscribe(
         newChat => {
           // Assuming newChat contains the id of the created chat
-          this.router.navigate(['/chat', newChat._id]);
+          // console.log('Chat created:', newChat);
+          this.router.navigate(['/chats', newChat._id]);
         },
         error => {
           console.error('Error creating chat:', error);
