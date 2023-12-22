@@ -1,11 +1,13 @@
-import {Controller, Get, Post, Req, Res, UseGuards} from '@nestjs/common';
+import {Controller, Get, Post, Req, Res, UseGuards, Body, UnauthorizedException} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { Request, Response } from 'express';
+import {LoginDto} from "./login.dto";
+import {JwtService} from "@nestjs/jwt";
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private jwtService: JwtService) {}
 
     @UseGuards(LocalAuthGuard)
     @Post('login')
@@ -22,6 +24,20 @@ export class AuthController {
         });
         return res.send({ message: 'Logged in successfully' });
     }
+
+    @Post('login-token')
+    async loginReturnToken(@Body() loginDto: LoginDto): Promise<{ accessToken: string }> {
+        const user = await this.authService.validateUser(loginDto.username, loginDto.password);
+        // console.log('user: ', user);
+        if (!user) {
+            throw new UnauthorizedException('Invalid credentials');
+        }
+        const payload = { username: user.username, sub: user.userId };
+        return {
+            accessToken: this.jwtService.sign(payload),
+        };
+    }
+
 
     @Get('logout')
     async logout(@Res() res: Response) {
