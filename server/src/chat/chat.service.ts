@@ -27,7 +27,7 @@ export class ChatService {
     }
 
     async listChatsByUser(userId: string): Promise<{ id: string, title: string }[]> {
-        const chats = await this.chatModel.find({ user: userId }, 'title');
+        const chats = await this.chatModel.find({ user: userId }, 'title').sort({updatedAt: -1});
         return chats.map(chat => ({ id: chat._id.toString(), title: chat.title }));
     }
 

@@ -17,6 +17,7 @@ export class OpenAiService {
             max_tokens: 1900,
             messages: messages.slice(-24),
         };
+        // console.log(body);
 
         try {
             const response: AxiosResponse = await axios.post(url, body, { headers });

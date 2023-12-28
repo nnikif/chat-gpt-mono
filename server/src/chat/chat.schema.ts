@@ -21,6 +21,9 @@ export const ChatSchema = new mongoose.Schema<Chat>({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     title: { type: String, required: true },
     messages: [messageSchema],
-});
+}, {timestamps: true});
+
+ChatSchema.index({ user: 1 });
+ChatSchema.index({updatedAt: -1});
 
 export const ChatModel = mongoose.model<Chat>('Chat', ChatSchema);
